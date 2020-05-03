@@ -31,6 +31,7 @@ exports.logger = logger_1.default.getConsoleLogger("Raider.io", logger_1.LOGGING
 const searchBaseUrl = `https://raider.io/api/search?`;
 app.get('/character', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const name = req.query.name;
+    exports.logger.info('searching - ' + name);
     const response = yield axios_1.default.get(`${searchBaseUrl}term=${name}`);
     let matches = response.data.matches;
     if (matches.length < 1) {
@@ -38,6 +39,7 @@ app.get('/character', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     // get char relative urls
     const urls = character_1.generateCharUrls(matches);
+    console.debug(urls);
     try {
         const details = yield Promise.all(lodash_1.default.map(urls, (url) => {
             return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {

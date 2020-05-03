@@ -11,7 +11,7 @@ const classSymbols = new Map([
   ["monk", "🐲"],
   ["paladin", "🐴"],
   ["priest", "🦓"],
-  ["rogue", "🐱‍👤"],
+  ["rogue", "🐱"],
   ["shaman", "🐋"],
   ["warlock", "🤢"],
   ["warrior", "😈"],
@@ -105,12 +105,13 @@ function getRaiderMsg(char: CharacterDetails) {
   msg += `[${name}] - ${charRealm}${factionDic.get(charFaction)}\n`
   msg += `${charLevel}级 ${classSymbols.get(charClass)}${specDic.get(charSpec)}${classDic.get(charClass)}\n`
   msg += `💎天赋: ${charTalents}\n`
-  msg += `🥼物品Lvl: ${charItemLevel} 🎉成就: ${charAchievementPoints}\n`
+  msg += `🥼物品Lvl: ${charItemLevel}\n`
+  msg += `🎉成就: ${charAchievementPoints}\n`
   msg += `🐛Raider: 🗡${charDpsScore} 🛡${charTankScore} 🍀${charHealerScore}\n`
   msg += `详情:`
   msg += `${charPath}`
 
-  return msg
+  return { text: msg, realm: charRealm }
 }
 
 export async function getRaiderMessages(name: string) {

@@ -15,7 +15,9 @@ const searchBaseUrl = `https://raider.io/api/search?`
 
 app.get('/character', async (req, res) => {
   const name = req.query.name
+  logger.info('searching - ' + name)
   const response = await axios.get(`${searchBaseUrl}term=${name}`)
+  
   let matches: SearchResult[] = response.data.matches
 
   if (matches.length < 1) {
@@ -24,6 +26,8 @@ app.get('/character', async (req, res) => {
 
   // get char relative urls
   const urls = generateCharUrls(matches)
+
+  console.debug(urls)
 
   try {
     const details = await Promise.all(_.map(urls, (url) => {
@@ -56,5 +60,5 @@ app.get('/raider', async (req, res) => {
 
 const PORT = process.env.PORT || 6005
 app.listen(6005, () => {
-  logger.info('Server is running at '+ PORT)
+  logger.info('Server is running at ' + PORT)
 })
