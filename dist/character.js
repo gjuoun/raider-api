@@ -29,9 +29,7 @@ function generateCharUrls(searchResults) {
         const region = charResult.region.slug;
         const realm = charResult.realm.slug;
         const charName = charResult.name;
-        if (realm === "illidan") {
-            charUrls.push(`${region}/${realm}/${charName}`);
-        }
+        charUrls.push(`${region}/${realm}/${charName}`);
     }
     // only return top 3 results
     if (charUrls.length > 3) {

@@ -107,7 +107,10 @@ function getRaiderMsg(char: CharacterDetails) {
   msg += `💎天赋: ${charTalents}\n`
   msg += `🥼物品Lvl: ${charItemLevel}\n`
   msg += `🎉成就: ${charAchievementPoints}\n`
-  msg += `🐛Raider: 🗡${charDpsScore} 🛡${charTankScore} 🍀${charHealerScore}\n`
+  msg += `🐛Raider: `
+  msg += charDpsScore ? `🗡${charDpsScore} ` : "";
+  msg += charTankScore ? `🛡${charTankScore} ` : "";
+  msg += charHealerScore ? `🍀${charHealerScore}\n` : "\n"
   msg += `详情:`
   msg += `${charPath}`
 
